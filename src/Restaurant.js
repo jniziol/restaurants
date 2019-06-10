@@ -1,22 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Restaurant extends Component {
-
-  render() {
-    return(
-      <div className="restaurant">
-        <img src={this.props.image}></img>
-        <div className="info">
-          <div><span>Name:</span> {this.props.name}</div>
-          <div><span>Rating:</span> {this.props.rating}</div>
-          <a href="#">Reviews</a>
-          <span onClick={()=> this.props.increaseRating(this.props.name)}>+</span>
-          <span onClick={() => this.props.decreaseRating(this.props.name)}>-</span>
-        </div>
+export default function Restaurant(props) {
+  return(
+    <div className="restaurant">
+      <img src={props.restaurantProp.image}></img>
+      <div className="info">
+        <div><span>Name:</span> {props.restaurantProp.name}</div>
+        <div><span>Rating:</span> {props.restaurantProp.rating}</div>
+        <span onClick={() => {props.changeRating(props.restaurantProp, -1)}}>-</span>
+        <span onClick={() => {props.changeRating(props.restaurantProp, 1)}}>+</span>
       </div>
-    )
-  }
+    </div>
+  )
 }
-
-
-export default Restaurant
