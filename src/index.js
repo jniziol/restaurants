@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import RestaurantList from './RestaurantList';
+import Page from './Page';
 
-ReactDOM.render(<RestaurantList />, document.getElementById('root'));
+ReactDOM.render(<Page />, document.getElementById('root'));
 
