@@ -1,6 +1,7 @@
 import React from 'react';
 import RestaurantList from './RestaurantList'
 import RestaurantForm from './RestaurantForm'
+import { Link, Route} from "react-router-dom";
 
 export default class Page extends React.Component {
   state = {
@@ -82,8 +83,18 @@ export default class Page extends React.Component {
   render() {
     return (
       <>
-        <RestaurantForm createNewRestaurant={this.createNewRestaurant}/>
-        <RestaurantList addNewReview={this.addNewReview} restaurants={this.state.restaurants} changeRating={this.changeRating}/>
+        <Route path="/new-restaurant" render={({ history }) => (
+          <RestaurantForm createNewRestaurant={(name, url) => {
+            this.createNewRestaurant(name, url)
+            history.push('/');
+          }}/>
+        )}/>
+        <Route exact path="/" render={() => (
+          <>
+            <Link to="/new-restaurant">Add New Restaurant</Link>
+            <RestaurantList addNewReview={this.addNewReview} restaurants={this.state.restaurants} changeRating={this.changeRating}/>
+          </>
+        )}/>
       </>
     );
   }
